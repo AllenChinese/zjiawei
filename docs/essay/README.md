@@ -1,0 +1,3 @@
+---
+pageClass: essay-page-class
+---

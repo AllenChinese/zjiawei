@@ -1,0 +1,18 @@
+---
+pageClass: blog-page-class
+---
+## 前言
+::: tip 博客
+记录程序生涯的点滴，分享技术实践。
+:::
+
+:tada: :100:
+``` js
+export default {
+  data () {
+    return {
+      msg: 'Highlighted!'
+    }
+  }
+}
+```
