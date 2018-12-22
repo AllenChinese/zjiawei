@@ -11,7 +11,7 @@ module.exports = {
   },
   themeConfig: {
     sidebarDepth: 2, // e'b将同时提取markdown中h2 和 h3 标题，显示在侧边栏上。
-    lastUpdated: 'Last Updated', // 文档更新时间：每个文件git最后提交的时间
+    lastUpdated: '文档更新时间', // 文档更新时间：每个文件git最后提交的时间
     serviceWorker: {
       updatePopup: true
     },
@@ -39,50 +39,48 @@ module.exports = {
         {
           title: 'HTML',
           children: [
-            ['/blog/html/one', '你好'],
-            ['/blog/html/two', '我是']
+            ['/blog/html/comming', '待完善']
           ]
         },
         {
           title: 'CSS',
           children: [
-
+            ['/blog/css/comming', '待完善']
           ]
         },
         {
           title: 'JavaScript',
           children: [
-
+            ['/blog/javascript/JS-arrayAndObject', 'JavaScript 数组 & 对象遍历方法']
           ]
         },
         {
           title: 'Vue',
           children: [
-
+            ['/blog/vue/comming', '待完善']
           ]
         },
         {
           title: 'React',
           children: [
-
+            ['/blog/react/comming', '待完善']
           ]
         },
         {
           title: 'Node.js',
           children: [
-
+            ['/blog/nodejs/comming', '待完善']
           ]
         },
         {
           title: '小程序',
           children: [
-
+            ['/blog/miniapp/comming', '待完善']
           ]
         }
       ],
       '/essay': [
-        ['/essay/one', '你好'],
-        ['/essay/two', '我是']
+        // ['/essay/one', '你好'],
       ]
     }
   }
