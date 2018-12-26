@@ -51,7 +51,8 @@ module.exports = {
         {
           title: 'JavaScript',
           children: [
-            ['/blog/javascript/JS-arrayAndObject', 'JavaScript 数组 & 对象遍历方法']
+            ['/blog/javascript/JS-arrayAndObject', 'JavaScript 数组 & 对象遍历方法'],
+            ['/blog/javascript/JS-draggablejs', '可用的移动端拖拽库 draggable.js']
           ]
         },
         {
