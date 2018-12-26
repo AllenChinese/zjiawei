@@ -6,13 +6,10 @@ pageClass: blog-page-class
 记录程序生涯的点滴，分享技术实践。
 :::
 
-:tada: :100:
+### 代码写诗
 ``` js
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
+for ( ; ; ) {
+  me;
 }
+you;
 ```
