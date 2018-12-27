@@ -78,6 +78,12 @@ module.exports = {
           children: [
             ['/blog/miniapp/comming', '待完善']
           ]
+        },
+        {
+          title: '前端整理',
+          children: [
+            ['/blog/web-package/base-skill', '前端基础技能']
+          ]
         }
       ],
       '/essay': [
