@@ -58,7 +58,7 @@ module.exports = {
         {
           title: 'Vue',
           children: [
-            ['/blog/vue/comming', '待完善']
+            ['/blog/vue/vue-configurable-form', '结合 UI 框架实现可配置 Vue 表单组件浅析']
           ]
         },
         {
