@@ -12,7 +12,7 @@ title: 可用的移动端拖拽库 draggable.js
 ::: tip 关于
 主要用到 h5 手势中的 touchstart、touchmove、touchend 事件，配合元素的位置关系实现拖拽功能。利用 extend 将 draggable 扩展到 jQuery 中，使用 dragEle.draggable() 形式进行调用。
 :::
-### 代码封装
+### 一、代码封装
 
 ```js
 import $ from 'jquery'
@@ -177,7 +177,7 @@ $.fn.extend({
 
 ```
 
-### 调用
+## 二、调用
 ``` js
 dragImgList.draggable({
   targetElement: '.targetLi', // 性能可优化部分
