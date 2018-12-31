@@ -85,6 +85,12 @@ module.exports = {
           children: [
             ['/blog/web-package/base-skill', '前端基础技能']
           ]
+        },
+        {
+          title: '架构 & 解决方案',
+          children: [
+            ['/blog/architecture/web-page-configuration', '前端页面「配置化」实践']
+          ]
         }
       ],
       '/essay': [
