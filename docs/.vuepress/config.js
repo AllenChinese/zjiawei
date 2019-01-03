@@ -59,7 +59,8 @@ module.exports = {
           title: 'Vue',
           children: [
             ['/blog/vue/vue-configurable-form', '结合 UI 框架实现可配置 Vue 表单组件浅析'],
-            ['/blog/vue/vue-cli2.0-demo', 'vue-cli 仿网易云音乐 Demo,环境搭建到开发 Vue 全家桶练手项目']
+            ['/blog/vue/vue-cli2.0-demo', 'vue-cli 仿网易云音乐 Demo,环境搭建到开发 Vue 全家桶练手项目'],
+            ['/blog/vue/vue-nuxt-test', '基于 Vue.js 的服务端渲染 (ssr) 通用应用框架 Nuxt.js']
           ]
         },
         {
