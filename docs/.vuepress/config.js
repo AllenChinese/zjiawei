@@ -92,6 +92,12 @@ module.exports = {
           children: [
             ['/blog/architecture/web-page-configuration', '前端页面「配置化」实践']
           ]
+        },
+        {
+          title: '管理',
+          children: [
+            ['/blog/manager/m-a-project-life-circle', '一个项目的生命周期']
+          ]
         }
       ],
       '/essay': [
