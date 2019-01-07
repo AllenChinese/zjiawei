@@ -82,6 +82,12 @@ module.exports = {
           ]
         },
         {
+          title: '动画',
+          children: [
+            ['/blog/animation/a-lottie', 'airbnb Lottie 动画库实践']
+          ]
+        },
+        {
           title: '前端整理',
           children: [
             ['/blog/web-package/base-skill', '前端基础技能']
