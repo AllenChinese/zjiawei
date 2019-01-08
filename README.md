@@ -16,14 +16,23 @@
    - CSS
    - JavaScript
      - 《JavaScript 数组和对象遍历》
+     - 《可用的移动端拖拽库 draggable.js》
    - Nodejs
    - miniapp
    - Vue
+      - 《结合 UI 框架实现可配置 Vue 表单组件浅析》
+      - 《vue-cli 仿网易云音乐 Demo,环境搭建到开发 Vue 全家桶练手项目》
+      - 《基于 Vue.js 的服务端渲染 (ssr) 通用应用框架 Nuxt.js》
    - React
-   - 架构
+   - 架构 & 解决方案
+      - 《前端页面「配置化」实践——前端组内部分享》
+   - 动画
+   - 前端整理
+      - 《前端基础技能》
    - 计算机原理
    - 算法
    - python
    - golang
+   - 管理
 
  - 随想
