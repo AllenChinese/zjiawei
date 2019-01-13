@@ -104,6 +104,12 @@ module.exports = {
           children: [
             ['/blog/manager/m-a-project-life-circle', '一个项目的生命周期']
           ]
+        },
+        {
+          title: '我的项目',
+          children: [
+            ['/blog/myProject/wx-mark', '微信小程序「Mark」文档']
+          ]
         }
       ],
       '/essay': [
