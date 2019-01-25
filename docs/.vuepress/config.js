@@ -110,6 +110,12 @@ module.exports = {
           children: [
             ['/blog/myProject/wx-mark', '微信小程序「Mark」文档']
           ]
+        },
+        {
+          title: '踩坑之旅',
+          children: [
+            ['/blog/done/do-html2canvas', 'html2canvas 踩坑之旅']
+          ]
         }
       ],
       '/essay': [
