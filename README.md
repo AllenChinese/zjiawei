@@ -19,6 +19,8 @@
      - [《可用的移动端拖拽库 draggable.js》](https://zjiawei.cn/blog/javascript/JS-draggablejs.html)
    - Nodejs
    - miniapp
+   - 动画
+     - [《airbnb Lottie 动画库实践》](https://zjiawei.cn/blog/animation/a-lottie.html)
    - Vue
       - [《结合 UI 框架实现可配置 Vue 表单组件浅析》](https://zjiawei.cn/blog/vue/vue-configurable-form.html)
       - [《vue-cli 仿网易云音乐 Demo,环境搭建到开发 Vue 全家桶练手项目》](https://zjiawei.cn/blog/vue/vue-cli2.0-demo.html)
