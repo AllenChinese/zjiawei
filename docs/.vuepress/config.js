@@ -39,7 +39,7 @@ module.exports = {
         {
           title: 'HTML',
           children: [
-            ['/blog/html/comming', '待完善']
+            ['/blog/html/HTML—three-characters-achieve-chinese-alignment', '字符实现中文的等宽对齐效果']
           ]
         },
         {
@@ -91,6 +91,12 @@ module.exports = {
           title: '前端整理',
           children: [
             ['/blog/web-package/base-skill', '前端基础技能']
+          ]
+        },
+        {
+          title: '性能优化',
+          children: [
+            ['/blog/performance/p--vue-cli-f2e-performance', 'VUE_CLI 前端打包优化']
           ]
         },
         {
