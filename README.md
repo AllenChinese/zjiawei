@@ -13,6 +13,7 @@
 ## 栏目
  - 技术博客
    - HTML
+     - [《字符实现中文的等宽对齐效果》](https://zjiawei.cn/blog/html/HTML%E2%80%94three-characters-achieve-chinese-alignment.html)
    - CSS
    - JavaScript
      - [《JavaScript 数组和对象遍历》](https://zjiawei.cn/blog/javascript/JS-arrayAndObject.html)
