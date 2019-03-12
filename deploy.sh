@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+#生成当前时间
+time=`date '+%Y%m%d-%H%M%S'`
 
 # 确保脚本抛出遇到的错误
 set -e
@@ -14,7 +16,7 @@ echo 'zjiawei.cn' > CNAME
 
 git init
 git add -A
-git commit -m 'deploy'
+git commit -m "deploy-$time"
 
 # 如果发布到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
