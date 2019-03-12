@@ -32,6 +32,8 @@
    - 动画
    - 前端整理
       - [《前端基础技能》](https://zjiawei.cn/blog/web-package/base-skill.html#%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%8A%80%E8%83%BD)
+   - 性能优化
+      - [《vue-cli 前端性能优化方案》](https://zjiawei.cn/blog/performance/p--vue-cli-f2e-performance.html)
    - 计算机原理
    - 算法
    - python
