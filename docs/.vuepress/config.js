@@ -96,7 +96,7 @@ module.exports = {
         {
           title: '性能优化',
           children: [
-            ['/blog/performance/p--vue-cli-f2e-performance', 'VUE_CLI 前端打包优化']
+            ['/blog/performance/p--vue-cli-f2e-performance', 'vue-cli 前端性能优化方案']
           ]
         },
         {
