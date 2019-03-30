@@ -6,11 +6,8 @@
 
  - vuepress
 
-## 关于我
-
-我是一名前端开发工程师，目前就职于丁香园，base杭州。从事企业应用，以及商业项目的开发。丁香园长期招优秀的人才，欢迎找我内推，邮箱 📮 ：zjiawei@dxy.cn。
-
 ## 栏目
+
  - 技术博客
    - HTML
      - [《字符实现中文的等宽对齐效果》](https://zjiawei.cn/blog/html/HTML%E2%80%94three-characters-achieve-chinese-alignment.html)
@@ -41,3 +38,7 @@
    - 管理
 
  - 随想
+ 
+ ## 关于我
+
+我是一名前端开发工程师，目前就职于丁香园，base杭州。从事企业应用，以及商业项目的开发。丁香园长期招优秀的人才，欢迎找我内推，邮箱 📮 ：zjiawei@dxy.cn。
