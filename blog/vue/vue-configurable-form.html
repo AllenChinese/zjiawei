@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>结合 UI 框架实现可配置 Vue 表单组件浅析 | 周嘉炜</title>
+    <meta name="description" content="记录开发中的点点滴滴，攒出一本散文诗">
+    <link rel="icon" href="/logo.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.20f14837.css" as="style"><link rel="preload" href="/assets/js/app.c77ce8de.js" as="script"><link rel="preload" href="/assets/js/23.cb3fa477.js" as="script"><link rel="prefetch" href="/assets/js/10.10e8e5c1.js"><link rel="prefetch" href="/assets/js/11.4b0373f5.js"><link rel="prefetch" href="/assets/js/12.3e809ab6.js"><link rel="prefetch" href="/assets/js/13.3ad1fd08.js"><link rel="prefetch" href="/assets/js/14.3435d46c.js"><link rel="prefetch" href="/assets/js/15.73e1c326.js"><link rel="prefetch" href="/assets/js/16.5615dcfc.js"><link rel="prefetch" href="/assets/js/17.a134d57a.js"><link rel="prefetch" href="/assets/js/18.184470f0.js"><link rel="prefetch" href="/assets/js/19.dd78ac1f.js"><link rel="prefetch" href="/assets/js/2.878b12a5.js"><link rel="prefetch" href="/assets/js/20.edd472ca.js"><link rel="prefetch" href="/assets/js/21.15403b92.js"><link rel="prefetch" href="/assets/js/22.2ba2ef66.js"><link rel="prefetch" href="/assets/js/24.ead031a1.js"><link rel="prefetch" href="/assets/js/25.40a35296.js"><link rel="prefetch" href="/assets/js/26.ad98b076.js"><link rel="prefetch" href="/assets/js/3.e3bb0a04.js"><link rel="prefetch" href="/assets/js/4.8d93a946.js"><link rel="prefetch" href="/assets/js/5.944f7097.js"><link rel="prefetch" href="/assets/js/6.e325a207.js"><link rel="prefetch" href="/assets/js/7.7199e07d.js"><link rel="prefetch" href="/assets/js/8.65f8acdd.js"><link rel="prefetch" href="/assets/js/9.22359996.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.20f14837.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">周嘉炜</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">博客</a></div><div class="nav-item"><a href="/essay/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <a href="https://github.com/AllenChinese/zjiawei" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/blog/" class="nav-link router-link-active">博客</a></div><div class="nav-item"><a href="/essay/" class="nav-link">随笔</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <a href="https://github.com/AllenChinese/zjiawei" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading"><span>HTML</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>CSS</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>JavaScript</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>Vue</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/blog/vue/vue-configurable-form.html" class="active sidebar-link">结合 UI 框架实现可配置 Vue 表单组件浅析</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#结合-ui-框架实现可配置-vue-表单组件浅析" class="sidebar-link">结合 UI 框架实现可配置 Vue 表单组件浅析</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#目录" class="sidebar-link">目录</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#一、常规的表单" class="sidebar-link">一、常规的表单</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#二、配置化表单" class="sidebar-link">二、配置化表单</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#模板" class="sidebar-link">模板</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#数据" class="sidebar-link">数据</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#表单项配置" class="sidebar-link">表单项配置</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#render" class="sidebar-link">render</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#autoform-vue" class="sidebar-link">AutoForm.vue</a></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#如何根据-select-框的选项动态新增表单项" class="sidebar-link">如何根据 Select 框的选项动态新增表单项</a></li></ul></li><li class="sidebar-sub-header"><a href="/blog/vue/vue-configurable-form.html#三、说两句" class="sidebar-link">三、说两句</a></li></ul></li><li><a href="/blog/vue/vue-cli2.0-demo.html" class="sidebar-link">vue-cli 仿网易云音乐 Demo,环境搭建到开发 Vue 全家桶练手项目</a></li><li><a href="/blog/vue/vue-nuxt-test.html" class="sidebar-link">基于 Vue.js 的服务端渲染 (ssr) 通用应用框架 Nuxt.js</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>React</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Node.js</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>小程序</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>动画</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>前端整理</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>性能优化</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>架构 &amp; 解决方案</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>管理</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>我的项目</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>踩坑之旅</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h2 id="结合-ui-框架实现可配置-vue-表单组件浅析"><a href="#结合-ui-框架实现可配置-vue-表单组件浅析" aria-hidden="true" class="header-anchor">#</a> 结合 UI 框架实现可配置 Vue 表单组件浅析</h2> <div class="tip custom-block"><p class="custom-block-title">博客</p> <p>记录程序生涯的点滴，分享技术实践。</p></div> <h2 id="目录"><a href="#目录" aria-hidden="true" class="header-anchor">#</a> 目录</h2> <p></p><div class="table-of-contents"><ul><li><a href="#结合-ui-框架实现可配置-vue-表单组件浅析">结合 UI 框架实现可配置 Vue 表单组件浅析</a></li><li><a href="#目录">目录</a></li><li><a href="#一、常规的表单">一、常规的表单</a></li><li><a href="#二、配置化表单">二、配置化表单</a><ul><li><a href="#模板">模板</a></li><li><a href="#数据">数据</a></li><li><a href="#表单项配置">表单项配置</a></li><li><a href="#render">render</a></li><li><a href="#autoform-vue">AutoForm.vue</a></li><li><a href="#如何根据-select-框的选项动态新增表单项">如何根据 Select 框的选项动态新增表单项</a></li></ul></li><li><a href="#三、说两句">三、说两句</a></li></ul></div><p></p> <h2 id="一、常规的表单"><a href="#一、常规的表单" aria-hidden="true" class="header-anchor">#</a> 一、常规的表单</h2> <p>如果我们用 UI 框架做管理系统时候，关于表单的代码我们不会陌生，大致是这样的，比如这是一个 iView 框架下的综合性表单：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>Form <span class="token punctuation">:</span>model<span class="token operator">=</span><span class="token string">&quot;formItem&quot;</span> <span class="token punctuation">:</span>label<span class="token operator">-</span>width<span class="token operator">=</span><span class="token string">&quot;80&quot;</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>FormItem label<span class="token operator">=</span><span class="token string">&quot;Input&quot;</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Input v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">&quot;formItem.input&quot;</span> placeholder<span class="token operator">=</span><span class="token string">&quot;Enter something...&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>Input<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>FormItem<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>FormItem label<span class="token operator">=</span><span class="token string">&quot;Select&quot;</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Select v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">&quot;formItem.select&quot;</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Option value<span class="token operator">=</span><span class="token string">&quot;beijing&quot;</span><span class="token operator">&gt;</span>New <span class="token class-name">York</span><span class="token operator">&lt;</span><span class="token operator">/</span>Option<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Option value<span class="token operator">=</span><span class="token string">&quot;shanghai&quot;</span><span class="token operator">&gt;</span>London<span class="token operator">&lt;</span><span class="token operator">/</span>Option<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Option value<span class="token operator">=</span><span class="token string">&quot;shenzhen&quot;</span><span class="token operator">&gt;</span>Sydney<span class="token operator">&lt;</span><span class="token operator">/</span>Option<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>Select<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>FormItem<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>FormItem label<span class="token operator">=</span><span class="token string">&quot;Radio&quot;</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>RadioGroup v<span class="token operator">-</span>model<span class="token operator">=</span><span class="token string">&quot;formItem.radio&quot;</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Radio label<span class="token operator">=</span><span class="token string">&quot;male&quot;</span><span class="token operator">&gt;</span>Male<span class="token operator">&lt;</span><span class="token operator">/</span>Radio<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Radio label<span class="token operator">=</span><span class="token string">&quot;female&quot;</span><span class="token operator">&gt;</span>Female<span class="token operator">&lt;</span><span class="token operator">/</span>Radio<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>RadioGroup<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>FormItem<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>Form<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+        <span class="token function">data</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">{</span>
+                formItem<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                    input<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                    select<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                    radio<span class="token punctuation">:</span> <span class="token string">'male'</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br></div></div><h2 id="二、配置化表单"><a href="#二、配置化表单" aria-hidden="true" class="header-anchor">#</a> 二、配置化表单</h2> <p>而我想要的方式是这样的：</p> <h3 id="模板"><a href="#模板" aria-hidden="true" class="header-anchor">#</a> 模板</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token operator">&lt;</span>template slot<span class="token operator">=</span><span class="token string">&quot;modalContent&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>AutoForm
+        <span class="token punctuation">:</span>fileds<span class="token operator">=</span><span class="token string">&quot;projectFields&quot;</span>
+        <span class="token punctuation">:</span>model<span class="token operator">=</span><span class="token string">&quot;projectFormData&quot;</span>
+        <span class="token punctuation">:</span>formName<span class="token operator">=</span><span class="token string">&quot;projectFormData&quot;</span>
+        <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;my-form&quot;</span>
+    <span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+<span class="token comment">// @ is an alias to /src</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> mapState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vuex'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> projectFields <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/fieldsMap'</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    <span class="token function">data</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 表单配置列表</span>
+            projectFields<span class="token punctuation">:</span> projectFields
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          <span class="token comment">// 项目列表页编辑表单</span>
+          projectFormData<span class="token punctuation">:</span> state <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>project<span class="token punctuation">.</span>projectFormData
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><p>表单项的数据来源我会利用 Vuex 的 state 里管理：</p> <h3 id="数据"><a href="#数据" aria-hidden="true" class="header-anchor">#</a> 数据</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> projectFormData <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/api/project'</span>
+
+<span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 项目列表页编辑</span>
+      projectFormData<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        projectInput<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        projectSelect<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        projectRadio<span class="token punctuation">:</span> <span class="token string">''</span>
+      <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// getters</span>
+<span class="token keyword">const</span> getters <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// action</span>
+<span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 表单项数据获取</span>
+    <span class="token comment">// 表单项数据提交</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// mutations</span>
+<span class="token keyword">const</span> mutations <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  namespaced<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  state<span class="token punctuation">,</span>
+  getters<span class="token punctuation">,</span>
+  actions<span class="token punctuation">,</span>
+  mutations
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><p>表单项的配置也是通过单文件<code>（fieldsMap.js）</code>管理，方便维护：</p> <h3 id="表单项配置"><a href="#表单项配置" aria-hidden="true" class="header-anchor">#</a> 表单项配置</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 表单配置项</span>
+<span class="token comment">// 注意：tag 和 type 需要根据使用的 UI 框架来匹配。</span>
+<span class="token keyword">const</span> projectFields <span class="token operator">=</span> <span class="token punctuation">{</span>
+    projectInput<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        label<span class="token punctuation">:</span> <span class="token string">'项目Input'</span><span class="token punctuation">,</span>
+        tag<span class="token punctuation">:</span> <span class="token string">'Input'</span><span class="token punctuation">,</span>
+        type<span class="token punctuation">:</span> <span class="token string">'text'</span><span class="token punctuation">,</span>
+        placeholder<span class="token punctuation">:</span> <span class="token string">'请输入项目Input'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    projectSelect<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        label<span class="token punctuation">:</span> <span class="token string">'项目下拉Select'</span><span class="token punctuation">,</span>
+        tag<span class="token punctuation">:</span> <span class="token string">'Select'</span><span class="token punctuation">,</span>
+        options<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            key<span class="token punctuation">:</span> <span class="token string">'beijing'</span><span class="token punctuation">,</span>
+            value<span class="token punctuation">:</span> <span class="token string">'beijing'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            key<span class="token punctuation">:</span> <span class="token string">'hangzhou'</span><span class="token punctuation">,</span>
+            value<span class="token punctuation">:</span> <span class="token string">'hangzhou'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    projectRadio<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        label<span class="token punctuation">:</span> <span class="token string">'项目Radio'</span><span class="token punctuation">,</span>
+        tag<span class="token punctuation">:</span> <span class="token string">'RadioGroup'</span><span class="token punctuation">,</span>
+        options<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            label<span class="token punctuation">:</span> <span class="token string">'是'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            label<span class="token punctuation">:</span> <span class="token string">'否'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><p>OK，整个一个配置表单的文件结构，使用方式就是这样子，总结一下大致是三部曲：</p> <ul><li>引入 <code>&lt;AutoForm /&gt;</code> 组件。</li> <li><code>fieldsMap.js</code> 中配置表单项，包括 label、type、tag、options等。</li> <li><code>Vuex state</code> 中添加数据来源。</li></ul> <p>剩下的关键是 <code>&lt;AutoForm /&gt;</code> 组件是如何实现配置化，其实本质是<code>动态</code>生成表单项（根据配置文件）的过程，对于 <code>iView</code> 来说，就是动态的生成 <code>FormItem</code>，来拼成一个完整的表单。这时我们就需要用到 <code>vue</code> 提供的 <code>render Api</code>了。</p> <p>首先查看一下官方文档 <code>render</code> 截图：</p> <h3 id="render"><a href="#render" aria-hidden="true" class="header-anchor">#</a> render</h3> <p><img src="https://user-gold-cdn.xitu.io/2018/8/12/1652e930f8a84413?w=1372&h=582&f=png&s=114675" alt></p> <p>三个参数的简单用法：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+    Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'Line'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        render<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// 传递数据</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">'文本 or 子节点'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>了解基础用法后，我们来看下 <code>&lt;AutoForm /&gt;</code> 组件的实现：</p> <p>在上代码之前，我们先看一下 <code>iView</code> 表单的结构，从外层到内层，<code>Form 容器固定</code>——<code>FormItem 数量动态</code>——<code>Input 类型动态</code>，组件最终是返回一个 <code>Form</code>；根据配置项的数量来决定 <code>FormItem</code> 的数量，动态创建；根据配置项的 <code>tag</code> 和 <code>type</code> 来决定表单的类型；当然有些例如 <code>Select</code> 的表单项会有 <code>options</code> 下拉选项，也需要单独生成。</p> <p>根据上面的分析，那总结关于这个 <code>&lt;AutoForm /&gt;</code> 组件，大致有 <code>FormRender</code>、<code>itemsRender</code>、<code>componentUse</code>、类型（<code>InputRender</code>、<code>RadioRender</code>、<code>SelectRender</code>）、<code>options</code> (<code>optionsRender</code>) 五个点。</p> <h3 id="autoform-vue"><a href="#autoform-vue" aria-hidden="true" class="header-anchor">#</a> <code>AutoForm.vue</code></h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'Form'</span><span class="token punctuation">,</span>
+  functional<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token function">render</span> <span class="token punctuation">(</span>h<span class="token punctuation">,</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> fileds <span class="token operator">=</span> context<span class="token punctuation">.</span>props<span class="token punctuation">.</span>fileds <span class="token comment">// 表单配置 from fieldsMap.js</span>
+    <span class="token keyword">let</span> model <span class="token operator">=</span> context<span class="token punctuation">.</span>props<span class="token punctuation">.</span>model <span class="token comment">// 表单数据 from state</span>
+    <span class="token keyword">let</span> formName <span class="token operator">=</span> context<span class="token punctuation">.</span>props<span class="token punctuation">.</span>formName <span class="token comment">// 表单名称唯一</span>
+    <span class="token comment">/**
+     * 渲染 FormItem
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">itemsRender</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      <span class="token comment">// 遍历配置项动态生成 FormItem</span>
+      Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>fileds<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ele<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+          <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'FormItem'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                label<span class="token punctuation">:</span> fileds<span class="token punctuation">[</span>ele<span class="token punctuation">]</span><span class="token punctuation">.</span>label <span class="token comment">// FormItem label 属性</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token function">componentUse</span><span class="token punctuation">(</span>fileds<span class="token punctuation">[</span>ele<span class="token punctuation">]</span><span class="token punctuation">,</span> ele<span class="token punctuation">)</span> <span class="token comment">// 子节点表单类型，利用 componentUse 函数控制</span>
+          <span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">return</span> res
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 表单分发选择
+     * @param { Object } _item - 当前 fields 配置项
+     * @param { String } _model - 当前配置项名
+     */</span>
+    <span class="token keyword">function</span> <span class="token function">componentUse</span> <span class="token punctuation">(</span>_item<span class="token punctuation">,</span> _model<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> typeMap <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token string">'Input'</span><span class="token punctuation">:</span> InputRender<span class="token punctuation">,</span>
+        <span class="token string">'RadioGroup'</span><span class="token punctuation">:</span> RadioRender<span class="token punctuation">,</span>
+        <span class="token string">'Select'</span><span class="token punctuation">:</span> SelectRender
+      <span class="token punctuation">}</span>
+      <span class="token keyword">let</span> component <span class="token operator">=</span> typeMap<span class="token punctuation">[</span>_item<span class="token punctuation">.</span>tag<span class="token punctuation">]</span><span class="token punctuation">(</span>_item<span class="token punctuation">,</span> _model<span class="token punctuation">)</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">[</span>component<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Input</span>
+    <span class="token keyword">function</span> <span class="token function">InputRender</span> <span class="token punctuation">(</span>_item<span class="token punctuation">,</span> _model<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'Input'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'v-model'</span><span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>formName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>_model<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span>
+            <span class="token string">'placeholder'</span><span class="token punctuation">:</span> _item<span class="token punctuation">.</span>placeholder<span class="token punctuation">,</span>
+            <span class="token string">'type'</span><span class="token punctuation">:</span> _item<span class="token punctuation">.</span>type
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          on<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token comment">// iView 组件提供的方法，实现数据双向绑定</span>
+            <span class="token string">'on-blur'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+              model<span class="token punctuation">[</span>_model<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Radio</span>
+    <span class="token keyword">function</span> <span class="token function">RadioRender</span> <span class="token punctuation">(</span>_item<span class="token punctuation">,</span> _model<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'RadioGroup'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'v-model'</span><span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>formName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>_model<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          on<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'on-change'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+              model<span class="token punctuation">[</span>_model<span class="token punctuation">]</span> <span class="token operator">=</span> e <span class="token operator">===</span> <span class="token string">'是'</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token number">0</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        _item<span class="token punctuation">.</span>options <span class="token operator">?</span> <span class="token function">optionsRender</span><span class="token punctuation">(</span>_item<span class="token punctuation">.</span>options<span class="token punctuation">,</span> <span class="token string">'Radio'</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Select</span>
+    <span class="token keyword">function</span> <span class="token function">SelectRender</span> <span class="token punctuation">(</span>_item<span class="token punctuation">,</span> _model<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'Select'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'v-model'</span><span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>formName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>_model<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          on<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'on-change'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+              model<span class="token punctuation">[</span>_model<span class="token punctuation">]</span> <span class="token operator">=</span> e
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        _item<span class="token punctuation">.</span>options <span class="token operator">?</span> <span class="token function">optionsRender</span><span class="token punctuation">(</span>_item<span class="token punctuation">.</span>options<span class="token punctuation">,</span> <span class="token string">'Option'</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 有多选 options 配置 optionsRender</span>
+    <span class="token comment">// Radio</span>
+    <span class="token comment">// Select</span>
+    <span class="token keyword">function</span> <span class="token function">optionsRender</span> <span class="token punctuation">(</span>_options<span class="token punctuation">,</span> _tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> itemRes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      _options<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>_option<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>_tag <span class="token operator">===</span> <span class="token string">'Radio'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          itemRes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+            <span class="token function">h</span><span class="token punctuation">(</span>_tag<span class="token punctuation">,</span>
+              <span class="token punctuation">{</span>
+                props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                  <span class="token string">'label'</span><span class="token punctuation">:</span> _option<span class="token punctuation">.</span>label
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">)</span>
+          <span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>_tag <span class="token operator">===</span> <span class="token string">'Option'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          itemRes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+            <span class="token function">h</span><span class="token punctuation">(</span>_tag<span class="token punctuation">,</span>
+              <span class="token punctuation">{</span>
+                props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                  <span class="token string">'key'</span><span class="token punctuation">:</span> _option<span class="token punctuation">.</span>key<span class="token punctuation">,</span>
+                  <span class="token string">'value'</span><span class="token punctuation">:</span> _option<span class="token punctuation">.</span>value
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">)</span>
+          <span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+      <span class="token keyword">return</span> itemRes
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">let</span> items <span class="token operator">=</span> <span class="token function">itemsRender</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span>
+      <span class="token string">'Form'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token keyword">class</span><span class="token punctuation">:</span> context<span class="token punctuation">.</span>data<span class="token punctuation">.</span>staticStyle<span class="token punctuation">,</span>
+        style<span class="token punctuation">:</span> context<span class="token punctuation">.</span>data<span class="token punctuation">.</span>staticStyle<span class="token punctuation">,</span>
+        props<span class="token punctuation">:</span> context<span class="token punctuation">.</span>props
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      items
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br></div></div><p>好了，有了上面的铺路，你就可以在项目的任何页面使用配置表单了，这样你就不用重复去 <code>copy</code> 结构代码了，使得页面中的代码看着清爽；更重要的是分文件管理的方式，有利于维护。其实分页列表也可以参考这样的方式。</p> <p>一个含分页列表和基础表单的文件可以是这样的：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;hc-project-management&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>CommonList
+      <span class="token punctuation">:</span>addSearch<span class="token operator">=</span><span class="token string">&quot;addSearch&quot;</span>
+      <span class="token punctuation">:</span>columns<span class="token operator">=</span><span class="token string">&quot;columns&quot;</span>
+      <span class="token punctuation">:</span>data<span class="token operator">=</span><span class="token string">&quot;projectList&quot;</span>
+      <span class="token punctuation">:</span>pageBean<span class="token operator">=</span><span class="token string">&quot;pageBean&quot;</span>
+      <span class="token punctuation">:</span>statePath<span class="token operator">=</span><span class="token string">&quot;statePath&quot;</span>
+    <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>MyModal
+      <span class="token punctuation">:</span>isShow<span class="token operator">=</span><span class="token string">&quot;modal.isShow&quot;</span>
+      <span class="token punctuation">:</span>title<span class="token operator">=</span><span class="token string">&quot;modal.title&quot;</span>
+    <span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>template slot<span class="token operator">=</span><span class="token string">&quot;modalContent&quot;</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>AutoForm
+          <span class="token punctuation">:</span>fileds<span class="token operator">=</span><span class="token string">&quot;projectFields&quot;</span>
+          <span class="token punctuation">:</span>model<span class="token operator">=</span><span class="token string">&quot;projectFormData&quot;</span>
+          <span class="token punctuation">:</span>formName<span class="token operator">=</span><span class="token string">&quot;projectFormData&quot;</span>
+          <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;my-form&quot;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>MyModal<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h3 id="如何根据-select-框的选项动态新增表单项"><a href="#如何根据-select-框的选项动态新增表单项" aria-hidden="true" class="header-anchor">#</a> 如何根据 Select 框的选项动态新增表单项</h3> <p>有时候我们会有像标题描述的需求，当一个下拉菜单选中后，自动的添加或者改变表单项。</p> <p><img src="https://user-gold-cdn.xitu.io/2018/8/13/16531a48bdea44fb?w=1202&h=832&f=png&s=48951" alt></p> <p>实现：
+我这边会在 <code>watch</code> 中监听 <code>state</code> 中数据变化来添加配置项</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code>  watch<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 通过这种语法来watch</span>
+    <span class="token string">'projectFormData'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      handler<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>val<span class="token punctuation">,</span> oldVal<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 不能使用箭头函数 this 指向会出问题</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>val<span class="token punctuation">.</span>projectSelect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>projectFields <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>projectFields<span class="token punctuation">,</span> <span class="token punctuation">{</span> projectTextarea<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            label<span class="token punctuation">:</span> <span class="token string">'项目textarea'</span><span class="token punctuation">,</span>
+            tag<span class="token punctuation">:</span> <span class="token string">'Input'</span><span class="token punctuation">,</span>
+            type<span class="token punctuation">:</span> <span class="token string">'textarea'</span><span class="token punctuation">,</span>
+            placeholder<span class="token punctuation">:</span> <span class="token string">'请输入textarea'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">// 深度观察</span>
+      deep<span class="token punctuation">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h2 id="三、说两句"><a href="#三、说两句" aria-hidden="true" class="header-anchor">#</a> 三、说两句</h2> <p>  其实配置化还是常规写法，都是需要根据自身业务和开发成员等综合考虑的，比如在配置化时，那么就需要和组员约定好一个添加表单的流程和写法，这个是相对固定的，不像常规的那么自由；又比如，本身我们这个项目表单的数量只有2、3个，那是否有配置化的必要；再比如，成员间是否认可这样的写法，也是需要商量的。但是一旦形成文档规范，那么回头来看，配置化带来的可维护性、易错误定位等好处，就显得不用付出那么多成本。</p></div> <div class="page-edit"><!----> <div class="last-updated"><span class="prefix">文档更新时间: </span> <span class="time">12/29/2018, 11:13:14 PM</span></div></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/javascript/JS-draggablejs.html" class="prev">
+          可用的移动端拖拽库 draggable.js
+        </a></span> <span class="next"><a href="/blog/vue/vue-cli2.0-demo.html">
+          vue-cli 仿网易云音乐 Demo,环境搭建到开发 Vue 全家桶练手项目
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/app.c77ce8de.js" defer></script><script src="/assets/js/23.cb3fa477.js" defer></script>
+  </body>
+</html>
